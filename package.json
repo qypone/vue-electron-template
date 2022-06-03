@@ -2,22 +2,45 @@
   "name": "xingkong3",
   "private": true,
   "version": "0.0.1",
-  "main": "main.js",
+  "main": "electron/main.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "electron": "vite build & electron .",
-    "electron:build": "vite build && electron-builder"
+  "build": "vite build",
+  "serve": "vite preview",
+  "electron": "wait-on tcp:3000 && cross-env NODE_ENV=development electron .", 
+  "electron:serve": "concurrently -k \"yarn dev\" \"yarn electron\"",
+  "electron:build": "vite build && electron-builder"
   },
   "dependencies": {
     "vue": "^3.2.25"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.3",
+    "concurrently": "^7.2.1",
     "cross-env": "^7.0.3",
     "electron": "^19.0.1",
     "electron-builder": "^23.0.3",
-    "vite": "^2.9.9"
+    "vite": "^2.9.9",
+    "wait-on": "^6.0.1"
+  },
+  "build": {
+    "appId": "com.my-website.my-app",
+    "productName": "MyApp",
+    "copyright": "Copyright © 2021 kuari",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "dist_electron"
+    }
   }
 }
