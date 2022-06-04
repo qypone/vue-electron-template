@@ -7,11 +7,12 @@ const NODE_ENV = process.env.NODE_ENV
 function createWindow() {
 	// Create the browser window.
 	const mainWindow = new BrowserWindow({
-		width: 800,
-		height: 600,
+		width: 1200,
+		height: 700,
 		webPreferences: {
 			preload: path.join(__dirname, 'preload.js')
-		}
+		},
+		icon: path.join(__dirname, '../public/XingK.ico')
 	})
 
 	// and load the index.html of the app.
