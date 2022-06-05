@@ -12,6 +12,7 @@
     "electron:build": "vite build && electron-builder"
   },
   "dependencies": {
+    "element-plus": "^2.2.4",
     "vue": "^3.2.25"
   },
   "devDependencies": {

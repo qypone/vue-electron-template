@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from 'vue'
-
+import { ElButton } from 'element-plus'
+export default {
+  components: { ElButton },
+}
 defineProps({
   msg: String
 })
@@ -16,6 +19,7 @@ const count = ref(0)
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
   </p>
+  <el-button>I am ElButton</el-button>
 </template>
 
 <style scoped>
