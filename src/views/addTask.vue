@@ -5,7 +5,7 @@
     :before-close="handClosed"
     fullscreen=true
   >
-    <div>
+    <div class="dialog-body">
       <el-button type="primary" round @click="addLine">添加一行</el-button>
       <el-button type="success" round @click="save">提交</el-button>
       <el-table
@@ -97,11 +97,8 @@ export default {
           desc: "任务描述：",
           duedate: "",
           point: "0",
-          lix: "",
           sprint: "",
           assignee: "",
-          epiclink: "",
-          uclink: "",
         },
       ],
       templates: [],
@@ -115,14 +112,9 @@ export default {
           summary: "",
           templateNo: "",
           desc: "任务描述：",
-          duedate: "",
-          affectsversion: "",
           point: "0",
-          lix: "",
           sprint: "",
-          assignee: "",
-          epiclink: "",
-          uclink: "",
+          assignee: ""
         };
         this.tableData.push(newValue);
       } else {
@@ -237,3 +229,8 @@ export default {
   },
 };
 </script>
+<style>
+.dialog-body {
+  padding: 0 5px 0 12px;
+}
+</style>

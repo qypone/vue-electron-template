@@ -7,7 +7,7 @@
 
       <el-col :span="2">
         <el-button type="primary" @click="addOrUpdateHandle()">
-          新增
+          创建任务
          </el-button>
       </el-col>
     </el-row>
@@ -46,6 +46,5 @@ export default {
 }
 .taskView {
   margin: 20px;
-  margin-top: -30px;
 }
 </style>
