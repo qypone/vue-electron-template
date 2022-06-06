@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Menu } = require('electron')
 const path = require('path')
 
 const NODE_ENV = process.env.NODE_ENV
@@ -23,6 +23,8 @@ function createWindow() {
 		? 'http://localhost:3000'
 		:`file://${path.join(__dirname, '../dist/index.html')}`
 	);
+	// 关闭默认导航栏
+	// mainWindow.setMenu(null);
 
 	// Open the DevTools.
 	// mainWindow.webContents.openDevTools()
@@ -52,5 +54,34 @@ app.on('window-all-closed', function () {
 	if (process.platform !== 'darwin') app.quit()
 })
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+
+/************************************** 自定义菜单栏
+app.on('ready', () => {
+	const appMenu = Menu.buildFromTemplate(template);
+	Menu.setApplicationMenu(appMenu);
+});
+const template = [
+	{
+			label: 'Edit App',
+			submenu: [
+					{
+							label: 'Undo'
+					},
+					{
+							label: 'Redo'
+					}
+			]
+	},
+	{
+			label: 'View App',
+			submenu: [
+					{
+							label: 'Reload'
+					},
+					{
+							label: 'Toggle Full Screen'
+					}
+			]
+	}
+];
+*/
