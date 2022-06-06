@@ -2,10 +2,10 @@
   <el-dialog
     title="创建任务"
     v-model="dialogVisible"
-    width="90%"
     :before-close="handClosed"
+    fullscreen=true
   >
-    <div class="TestWord">
+    <div>
       <el-button type="primary" round @click="addLine">添加一行</el-button>
       <el-button type="success" round @click="save">提交</el-button>
       <el-table
@@ -13,8 +13,8 @@
         style="width: 100%"
         :row-class-name="createError"
       >
-        <el-table-column prop="summary" label="标题" align="center" :width="250">
-          <template #default="scope" style="width: 20%">
+        <el-table-column prop="summary" label="标题" align="center" style="width: 20%">
+          <template #default="scope">
             <el-input
               v-model="scope.row.summary"
               placeholder="标题"
@@ -22,8 +22,8 @@
             ></el-input>
           </template>
         </el-table-column>
-        <el-table-column prop="templateNo" label="模板" align="center" type="“selection“">
-          <template #default="scope" :width="200">
+        <el-table-column prop="templateNo" label="模板" align="center" type="“selection“" style="width: 20%">
+          <template #default="scope">
             <el-select
               v-model="scope.row.templateNo"
               filterable
@@ -41,26 +41,12 @@
             </el-select>
           </template>
         </el-table-column>
-        <el-table-column prop="desc" label="描述" align="center" :width="200">
+        <el-table-column prop="desc" label="描述" align="center" style="width: 35%">
           <template #default="scope">
-            <el-input v-model="scope.row.desc" placeholder="描述"> </el-input>
+            <el-input v-model="scope.row.desc" placeholder="issue description"> </el-input>
           </template>
         </el-table-column>
-        <el-table-column prop="uclink" label="UcLink" align="center" :width="150">
-          <template #default="scope">
-            <el-input v-model="scope.row.uclink" placeholder="183117538">
-            </el-input>
-          </template>
-        </el-table-column>
-        <el-table-column prop="affectsversion" label="版本" align="center" :width="180">
-          <template #default="scope">
-            <el-input
-              v-model="scope.row.affectsversion"
-              placeholder="CDP_V3.1.10_CDE_1.8.6"
-            ></el-input>
-          </template>
-        </el-table-column>
-        <el-table-column prop="point" label="点数" align="center" :width="80">
+        <el-table-column prop="point" label="点数" align="center" style="width: 10%">
           <template #default="scope">
             <el-input
               v-model="scope.row.point"
@@ -69,59 +55,26 @@
             ></el-input>
           </template>
         </el-table-column>
-        <el-table-column prop="lix" label="Lix" align="center" :width="180">
+        <el-table-column prop="sprint" label="sprint" align="center"  style="width: 15%">
           <template #default="scope">
-            <el-input
-              v-model="scope.row.lix"
-              placeholder="RTMTESTIN-26188"
-            ></el-input>
+            <el-input v-model="scope.row.sprint" placeholder="sprint id"></el-input>
           </template>
         </el-table-column>
-        <el-table-column prop="epiclink" label="Epic" align="center" :width="150">
-          <template #default="scope">
-            <el-input
-              v-model="scope.row.epiclink"
-              placeholder="CDP-21159"
-            ></el-input>
-          </template>
-        </el-table-column>
-        <el-table-column prop="sprint" label="sprint" align="center" :width="100">
-          <template #default="scope">
-            <el-input v-model="scope.row.sprint" placeholder="6306"></el-input>
-          </template>
-        </el-table-column>
-        <el-table-column prop="assignee" label="分配人" align="center" :width="130">
+        <el-table-column prop="assignee" label="分配人" align="center"  style="width: 15%">
           <template #default="scope">
             <el-input
               v-model="scope.row.assignee"
-              placeholder="lhdu"
+              placeholder="jira id"
             ></el-input>
           </template>
         </el-table-column>
-        <el-table-column prop="duedate" label="duedate" align="center" :width="120">
-          <template #default="scope">
-            <el-date-picker
-              v-model="scope.row.duedate"
-              type="date"
-              format="yyyy-MM-dd"
-              value-format="yyyy-MM-dd"
-              placeholder="duedate"
-            >
-            </el-date-picker>
-          </template>
-        </el-table-column>
-        <el-table-column
-          prop="bookbuytime"
-          style="margin-right: 20px"
-          label="操作"
-          :width="50"
-        >
+        <el-table-column prop="bookbuytime" style="margin-right: 20px" label="操作">
           <template #default="scope">
             <el-button
               v-if="!scope.row.editing"
               size="mini"
               type="danger"
-              icon="el-icon-delete"
+              icon="Delete" 
               @click="handleDelete(scope.$index, scope.row)"
             >
             </el-button>
@@ -133,7 +86,6 @@
 </template>
 
 <script>
-// import { saveOrUpdate, getJiraIssueTemplate } from "@/api/jiraissue";
 export default {
   data() {
     return {
@@ -144,7 +96,6 @@ export default {
           templateNo: "",
           desc: "任务描述：",
           duedate: "",
-          affectsversion: "",
           point: "0",
           lix: "",
           sprint: "",
@@ -180,14 +131,9 @@ export default {
         var newValue = {
           templateNo: datas.templateNo,
           desc: datas.desc,
-          duedate: datas.duedate,
-          affectsversion: datas.affectsversion,
           point: datas.point,
-          lix: datas.lix,
           sprint: datas.sprint,
-          assignee: datas.assignee,
-          epiclink: datas.epiclink,
-          uclink: datas.uclink,
+          assignee: datas.assignee
         };
         //添加新的行数
         this.tableData.push(newValue);

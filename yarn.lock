@@ -54,6 +54,11 @@
     minimatch "^3.0.4"
     plist "^3.0.4"
 
+"@element-plus/icons-vue@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.npmmirror.com/@element-plus/icons-vue/-/icons-vue-2.0.4.tgz#98fb9680c814a2a4f231b8bdabc8cd59b1b79d86"
+  integrity sha512-UeBVBU3fuBsYa9mzM7DgkRztQ1Aftw3sMTI/1gZsqXq2NWiCOi16ZYXXGIc0jFDIu+k6SojzdlxOjv+rN/Y6FQ==
+
 "@element-plus/icons-vue@^2.0.5":
   version "2.0.5"
   resolved "https://registry.npmmirror.com/@element-plus/icons-vue/-/icons-vue-2.0.5.tgz#8eb4143a7b5e4d8468d2e72af99eefee446f5ea0"

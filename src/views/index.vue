@@ -6,13 +6,9 @@
       </el-col>
 
       <el-col :span="2">
-        <!-- <el-button type="primary" icon="el-icon-plus" @click="handleSearch">添加</el-button> -->
-        <el-button
-          type="primary"
-          icon="el-icon-plus"
-          @click="addOrUpdateHandle()"
-          >新增</el-button
-        >
+        <el-button type="primary" @click="addOrUpdateHandle()">
+          新增
+         </el-button>
       </el-col>
     </el-row>
 
@@ -22,6 +18,7 @@
 
 <script>
 import AddTask from "./addTask.vue";
+
 export default {
   components: {
     AddTask,
@@ -42,3 +39,13 @@ export default {
   },
 };
 </script>
+
+<style>
+.el-row {
+  margin-bottom: 20px;
+}
+.taskView {
+  margin: 20px;
+  margin-top: -30px;
+}
+</style>
