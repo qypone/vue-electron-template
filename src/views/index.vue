@@ -1,33 +1,44 @@
 <template>
-  <el-table :data="tableData" style="width: 100%">
-    <el-table-column prop="date" label="Date" width="180" />
-    <el-table-column prop="name" label="Name" width="180" />
-    <el-table-column prop="address" label="Address" />
-  </el-table>
+  <div class="taskView">
+    <el-row :align="'bottom'" type="flex" :gutter="20">
+      <el-col :span="5">
+        <el-input v-model="name" placeholder="请输入内容"></el-input>
+      </el-col>
+
+      <el-col :span="2">
+        <!-- <el-button type="primary" icon="el-icon-plus" @click="handleSearch">添加</el-button> -->
+        <el-button
+          type="primary"
+          icon="el-icon-plus"
+          @click="addOrUpdateHandle()"
+          >新增</el-button
+        >
+      </el-col>
+    </el-row>
+
+    <add-task v-if="addOrUpdateVisible" ref="addTask" />
+  </div>
 </template>
 
-<script lang="ts" setup>
-import { ref } from 'vue';
-const tableData = [
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
+<script>
+import AddTask from "./addTask.vue";
+export default {
+  components: {
+    AddTask,
   },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
+  data() {
+    return {
+      addOrUpdateVisible: false,
+      name: "",
+    };
   },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
+  methods: {
+    addOrUpdateHandle() {
+      this.addOrUpdateVisible = true;
+      this.$nextTick(() => {
+        this.$refs.addTask.add();
+      });
+    },
   },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-]
+};
 </script>
