@@ -1,13 +1,10 @@
 <template>
   <el-dialog
-    title="创建任务"
     v-model="dialogVisible"
     :before-close="handClosed"
     fullscreen=true
   >
     <div class="dialog-body">
-      <el-button type="primary" round @click="addLine">添加一行</el-button>
-      <el-button type="success" round @click="save">提交</el-button>
       <el-table
         :data="tableData"
         style="width: 100%"
@@ -64,7 +61,7 @@
           <template #default="scope">
             <el-input
               v-model="scope.row.assignee"
-              placeholder="jira id"
+              placeholder="assign id"
             ></el-input>
           </template>
         </el-table-column>
@@ -74,13 +71,17 @@
               v-if="!scope.row.editing"
               size="mini"
               type="danger"
-              icon="Delete" 
+              icon="Delete"
               @click="handleDelete(scope.$index, scope.row)"
             >
             </el-button>
           </template>
         </el-table-column>
       </el-table>
+    </div>
+    <div class="button">
+      <el-button type="primary" round @click="addLine">添加一行</el-button>
+      <el-button type="success" round @click="save">提交</el-button>
     </div>
   </el-dialog>
 </template>
@@ -230,7 +231,8 @@ export default {
 };
 </script>
 <style>
-.dialog-body {
-  padding: 0 5px 0 12px;
+.button {
+  margin-top: 5px;
+  text-align: center;
 }
 </style>
