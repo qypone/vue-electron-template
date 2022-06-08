@@ -22,6 +22,9 @@
           基础配置
         </el-button>
       </el-col>
+      <el-col :span="2">
+       <el-button @click="getData">获取数据</el-button>
+      </el-col>
     </el-row>
     
     <div>
@@ -42,6 +45,7 @@
 import AddIssue from "./addIssue.vue";
 import IssueTemplate from './issueTemplate.vue'
 import BaseConfig from './baseConfig.vue'
+// import {test} from '../api/test.js';
 
 export default {
   components: {
@@ -80,6 +84,9 @@ export default {
     };
   },
   methods: {
+     getData(){
+            test();
+        },
     addOrUpdateHandle() {
       this.addOrUpdateVisible = true;
       this.$nextTick(() => {
