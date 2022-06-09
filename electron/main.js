@@ -13,7 +13,9 @@ function createWindow() {
 		width: width,
 		height: height,
 		webPreferences: {
-			preload: path.join(__dirname, 'preload.js')
+			preload: path.join(__dirname, 'preload.js'),
+			nodeIntegration:  true,
+      contextIsolation: false
 		},
 		icon: path.join(__dirname, '../public/XingK.ico')
 	})

@@ -45,7 +45,7 @@
 import AddIssue from "./addIssue.vue";
 import IssueTemplate from './issueTemplate.vue'
 import BaseConfig from './baseConfig.vue'
-// import {test} from '../api/test.js';
+import Store from 'electron-store'
 
 export default {
   components: {
@@ -85,7 +85,17 @@ export default {
   },
   methods: {
      getData(){
-            test();
+          console.log('add new connection')
+          const store = new Store();
+          // 存储信息
+          store.set('foo',  'bar');
+          // 根据process.type来分辨在哪种模式使用哪种模块
+          const APP = process.type === 'renderer' ? remote.app : app
+          // 获取electron应用的用户目录
+          const STORE_PATH = APP.getPath('userData')
+          console.log(STORE_PATH)
+          // 显示存储的信息
+          console.log(store.get('foo'))
         },
     addOrUpdateHandle() {
       this.addOrUpdateVisible = true;
