@@ -45,7 +45,6 @@
 import AddIssue from "./addIssue.vue";
 import IssueTemplate from './issueTemplate.vue'
 import BaseConfig from './baseConfig.vue'
-import Store from 'electron-store'
 
 export default {
   components: {
