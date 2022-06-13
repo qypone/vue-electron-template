@@ -29,9 +29,9 @@
     
     <div>
       <el-table :data="tableData">
-        <el-table-column property="date" label="Date" width="250" />
-        <el-table-column property="name" label="Name" width="250" />
-        <el-table-column property="address" label="Address" />
+        <el-table-column property="id" label="Id" width="250" />
+        <el-table-column property="role_name" label="RoleName" width="250" />
+        <el-table-column property="status" label="Status" />
       </el-table>
     </div>
 
@@ -45,6 +45,9 @@
 import AddIssue from "./addIssue.vue";
 import IssueTemplate from './issueTemplate.vue'
 import BaseConfig from './baseConfig.vue'
+import {
+  authRoleList
+} from '../api/test'
 
 export default {
   components: {
@@ -54,48 +57,35 @@ export default {
   },
   data() {
     return {
+       query: {
+        role_name: '',
+        status: '',
+        page: 1,
+        limit: 20
+      },
+      tableData: [],
+      total: 0,
       addOrUpdateVisible: false,
       templateManagementVisible: false,
       baseConfigVisible: false,
-      name: "",
-      tableData: [
-        {
-          date: '2016-05-02',
-          name: 'John Smith',
-          address: 'No.1518,  Jinshajiang Road, Putuo District',
-        },
-        {
-          date: '2016-05-04',
-          name: 'John Smith',
-          address: 'No.1518,  Jinshajiang Road, Putuo District',
-        },
-        {
-          date: '2016-05-01',
-          name: 'John Smith',
-          address: 'No.1518,  Jinshajiang Road, Putuo District',
-        },
-        {
-          date: '2016-05-03',
-          name: 'John Smith',
-          address: 'No.1518,  Jinshajiang Road, Putuo District',
-        },
-      ]
+      name: ""
     };
   },
   methods: {
      getData(){
-          console.log('add new connection')
-          const store = new Store();
-          // 存储信息
-          store.set('foo',  'bar');
-          // 根据process.type来分辨在哪种模式使用哪种模块
-          const APP = process.type === 'renderer' ? remote.app : app
-          // 获取electron应用的用户目录
-          const STORE_PATH = APP.getPath('userData')
-          console.log(STORE_PATH)
-          // 显示存储的信息
-          console.log(store.get('foo'))
-        },
+      authRoleList(this.query)
+        .then(response => {
+          console.log(response)
+          this.loading = false
+          this.tableData = response.data.list || []
+          this.total = response.data.total || 0
+        })
+        .catch(() => {
+          this.loading = false
+          this.list = []
+          this.total = 0
+        })
+    },
     addOrUpdateHandle() {
       this.addOrUpdateVisible = true;
       this.$nextTick(() => {
