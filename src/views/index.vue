@@ -23,7 +23,7 @@
         </el-button>
       </el-col>
       <el-col :span="2">
-       <el-button @click="getData">获取数据</el-button>
+       <el-button @click="getData">测试获取数据</el-button>
       </el-col>
     </el-row>
     

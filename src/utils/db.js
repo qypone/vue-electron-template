@@ -1,10 +1,12 @@
 const path = require('path');
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
+const os = require('os');
 
 class Db {
   constructor() {
-    const adapter = new FileSync(path.join('./', 'datastore.json')); // 存储在本地目录
+    // 存储在本地目录
+    const adapter = new FileSync(path.join(os.homedir(), 'datastore.json')); 
     this.db = low(adapter)
     this.createTable()
   }
@@ -197,9 +199,6 @@ class Db {
       ]
     }
 
-    // let tableList = this.db.get('').all();
-    // tableList = tableList.flatMap((i) => i.name)
-    // console.log(tableList)
     try {
       for (let index of Object.keys(tables)) {
         // this.db.set(index, tables[index]).write()
