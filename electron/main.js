@@ -19,7 +19,7 @@ function createWindow() {
 		},
 		icon: path.join(__dirname, '../public/XingK.ico')
 	})
-
+	console.log(NODE_ENV);
 	// and load the index.html of the app.
 	//mainWindow.loadFile('dist/index.html')
 	//mainWindow.loadURL("http://localhost:3000")
@@ -34,9 +34,9 @@ function createWindow() {
 	// Open the DevTools.
 	// mainWindow.webContents.openDevTools()
 	 // 打开开发工具
-	if (NODE_ENV === "development") {
+	// if (NODE_ENV === "development") {
     mainWindow.webContents.openDevTools()
-  }
+  // }
 }
 
 // This method will be called when Electron has finished
