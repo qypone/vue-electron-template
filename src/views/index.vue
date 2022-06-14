@@ -28,10 +28,12 @@
     </el-row>
     
     <div>
-      <el-table :data="tableData">
+      <el-table :data="issues">
         <el-table-column property="id" label="Id" width="250" />
-        <el-table-column property="role_name" label="RoleName" width="250" />
-        <el-table-column property="status" label="Status" />
+        <el-table-column property="name" label="名称" width="250" />
+        <el-table-column property="desc" label="描述" width="250" />
+        <el-table-column property="point" label="Point" width="250" />
+        <el-table-column property="sprint" label="Sprint" />
       </el-table>
     </div>
 
@@ -42,12 +44,10 @@
 </template>
 
 <script>
-import AddIssue from "./addIssue.vue";
-import IssueTemplate from './issueTemplate.vue'
-import BaseConfig from './baseConfig.vue'
-import {
-  authRoleList
-} from '../api/test'
+import AddIssue from "./issue/addIssue.vue";
+import IssueTemplate from './issue/issueTemplate.vue'
+import BaseConfig from './issue/baseConfig.vue'
+import {queryAll} from '../api/issue'
 
 export default {
   components: {
@@ -58,12 +58,11 @@ export default {
   data() {
     return {
        query: {
-        role_name: '',
-        status: '',
+        name: '',
         page: 1,
         limit: 20
       },
-      tableData: [],
+      issues: [],
       total: 0,
       addOrUpdateVisible: false,
       templateManagementVisible: false,
@@ -73,17 +72,16 @@ export default {
   },
   methods: {
      getData(){
-      authRoleList(this.query)
+      queryAll(this.query)
         .then(response => {
-          console.log(response)
-          this.loading = false
-          this.tableData = response.data.list || []
-          this.total = response.data.total || 0
+          this.loading = false;
+          this.issues = response.data.list || [];
+          this.total = response.data.total || 0;
         })
         .catch(() => {
-          this.loading = false
-          this.list = []
-          this.total = 0
+          this.loading = false;
+          this.list = [];
+          this.total = 0;
         })
     },
     addOrUpdateHandle() {
