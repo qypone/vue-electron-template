@@ -31,22 +31,11 @@ class Db {
           sprint: '冲刺--穿越星空'
         }
       ],
-      t_config: [
-        {
-          host: '',
-          username: '',
-          password: ''
-        }
-      ],
+      t_config: {
+
+      },
       t_issueTemplate: [
-        {
-          name: '',
-          assign: '',
-          desc: '',
-          point: 0,
-          sprint: '',
-          template: ''
-        }
+       
       ]
     }
 

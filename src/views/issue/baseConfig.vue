@@ -3,21 +3,22 @@
     title="基础配置管理"
     v-model="isShow"
     :before-close="handClosed"
-    width="40%"
+    width="35%"
   >
   <div>
-    <el-form :model="form" label-width="80px" class="formClass">
+    <el-form :model="form" label-width="80px">
       <el-form-item label="域名">
         <el-input v-model="form.domainName" placeholder="例如 http://jira.qypone.com" />
       </el-form-item>
       <el-form-item label="账号">
-        <el-input v-model="form.account" />
+        <el-input v-model="form.username" />
       </el-form-item>
       <el-form-item label="密码">
         <el-input type="password" v-model="form.password" show-password />
+        <el-tag class="my-eltag" type="danger">仅可保存一个配置,保存后会覆盖之前的配置</el-tag>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="contactTest">连接测试</el-button>
+        <el-button class="contactTest-btn" type="primary" @click="contactTest">连接测试</el-button>
         <el-button type="primary" @click="onSubmit">保存</el-button>
       </el-form-item>
     </el-form>
@@ -26,13 +27,15 @@
 </template>
 
 <script>
+import {saveBaseConfig, getBaseConfig} from '../../api/issue'
+
 export default {
   data() {
     return {
       isShow: false,
       form: {
         domainName: "",
-        account: "",
+        username: "",
         password: ""
       }
     };
@@ -41,23 +44,42 @@ export default {
     show() {
       this.isShow = true;
     },
-    searchBaseConfig() {
-      console.log('searchBaseConfig...');
+    getBaseConfig() {
+      console.log('getBaseConfig...');
+      getBaseConfig()
+        .then(response => {
+          this.form = response.data;
+        })
+        .catch(() => {
+          this.$message.error('获取基础配置失败')
+        })
     },
     onSubmit() {
       console.log('submit...');
+      saveBaseConfig(this.form)
+        .then(response => {
+          if (response.code) {
+            this.$message.error(response.message)
+            return false
+          }
+          this.$message.success('操作成功');
+          this.isShow = false;
+        })
     },
     contactTest() {
       console.log('contact Test...');
     },
   },
   mounted() {
-    this.searchBaseConfig();
+    this.getBaseConfig();
   },
 };
 </script>
 <style>
-.formClass {
-  
+.my-eltag {
+  margin-top: 5px;
+}
+.contactTest-btn {
+  margin-left: 15%;
 }
 </style>

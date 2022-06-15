@@ -17,3 +17,27 @@ export function queryAll(query) {
     }, '获取成功'))
   })
 }
+
+// 保存配置
+export function saveBaseConfig(data, method = 'post') {
+  return new Promise((resolve, reject) => {
+    db.set('t_config', 
+      { 
+        domainName: data['domainName'],
+        username: data['account'],
+        password: data['password']
+      })
+     .write();
+    let result = success(data, '添加成功');
+    resolve(result)
+  })
+}
+
+export function getBaseConfig() {
+  return new Promise((resolve, reject) => {
+    let config = db.get('t_config').value();
+    let result = success(config, '查询基础配置成功');
+    resolve(result)
+  })
+}
+
