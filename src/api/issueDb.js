@@ -24,7 +24,7 @@ export function saveBaseConfig(data, method = 'post') {
     db.set('t_config', 
       { 
         domainName: data['domainName'],
-        username: data['account'],
+        username: data['username'],
         password: data['password']
       })
      .write();

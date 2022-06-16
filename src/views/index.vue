@@ -8,19 +8,13 @@
         <el-button type="primary" icon="Search" circle />
       </el-col>
       <el-col :span="2">
-        <el-button type="success" @click="addOrUpdateHandle()">
-          创建任务
-         </el-button>
+         <el-button type="primary" plain @click="addOrUpdateHandle()">创建任务</el-button>
       </el-col>
       <el-col :span="2">
-        <el-button type="success" @click="templateManagement()">
-          模板管理
-        </el-button>
+        <el-button type="primary" plain @click="templateManagement()">模板管理</el-button>
       </el-col>
       <el-col :span="2">
-        <el-button type="success" @click="baseConfig()">
-          基础配置
-        </el-button>
+        <el-button type="primary" plain @click="baseConfig()">基础配置</el-button>
       </el-col>
       <el-col :span="2">
        <el-button @click="getData">测试获取数据</el-button>

@@ -28,7 +28,7 @@
 
 <script>
 import {saveBaseConfig, getBaseConfig} from '../../api/issueDb';
-import {testOfGithub} from '../../utils/fetch';
+import {testOfGithub} from '../../api/test';
 
 export default {
   data() {
