@@ -6,7 +6,7 @@ const os = require('os');
 class Db {
   constructor() {
     // 存储在本地目录
-    const adapter = new FileSync(path.join(os.homedir(), 'datastore.json')); 
+    const adapter = new FileSync(path.join(os.homedir(), 'xingK_db.json')); 
     this.db = low(adapter)
     this.createTable()
   }
