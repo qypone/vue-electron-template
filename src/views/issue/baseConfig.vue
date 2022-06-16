@@ -28,7 +28,7 @@
 
 <script>
 import {saveBaseConfig, getBaseConfig} from '../../api/issueDb';
-import {get} from '../../utils/request';
+import {testOfGithub} from '../../utils/fetch';
 
 export default {
   data() {
@@ -69,11 +69,8 @@ export default {
     },
     contactTest() {
       console.log('contact Test...');
-      //https://your-domain.atlassian.net/rest/api/2/serverInfo
-      let url = this.form.domainName + '/rest/api/2/serverInfo';
-      console.log(url)
-      get(url, null);
-    },
+      testOfGithub();
+    }
   },
   mounted() {
     this.getBaseConfig();
