@@ -29,6 +29,7 @@
 <script>
 import {saveBaseConfig, getBaseConfig} from '../../api/issueDb';
 import {testOfGithub} from '../../api/test';
+import {getServerInfo} from '../../api/issue'
 
 export default {
   data() {
@@ -70,6 +71,7 @@ export default {
     contactTest() {
       console.log('contact Test...');
       testOfGithub();
+      getServerInfo();
     }
   },
   mounted() {

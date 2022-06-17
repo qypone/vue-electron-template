@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import AddIssue from "./issue/addIssue.vue";
+import AddIssue from "./issue/addIssue.vue"
 import IssueTemplate from './issue/issueTemplate.vue'
 import BaseConfig from './issue/baseConfig.vue'
 import {queryAll} from '../api/issueDb'
