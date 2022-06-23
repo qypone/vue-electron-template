@@ -1,27 +1,9 @@
 export function getServerInfo() {
-  // fetch('http://jira1.travelsky.com/rest/api/2/serverInfo', {
-  //   method: 'GET',
-  //   headers: {
-  //     'Authorization': `Basic ${Buffer.from(
-  //       'qyp:ab79147649C@'
-  //     ).toString('base64')}`,
-  //     'Accept': 'application/json'
-  //   },
-  //   // credentials: 'include',
-  //   // mode: 'no-cors'
-  // })
-  //   .then(response => {
-  //     console.log(response);
-  //     return response.text();
-  //   })
-  //   .then(text => console.log(text))
-  //   .catch(err => console.error(err));
-
-  fetch('http://jira1.travelsky.com/rest/api/2/issue/CDP-39039', {
+  fetch('http://xxx.xxxx.com/rest/api/2/issue/xxx', {
   method: 'GET',
   headers: {
     'Authorization': `Basic ${Buffer.from(
-      'qyp:ab79147649C@'
+      'xxx:xxx'
     ).toString('base64')}`,
     'Accept': 'application/json'
   }

@@ -8,7 +8,7 @@
   <div>
     <el-form :model="form" label-width="80px">
       <el-form-item label="域名">
-        <el-input v-model="form.domainName" placeholder="例如 http://jira.qypone.com" />
+        <el-input v-model="form.domainName" placeholder="例如 http://xxx.qypone.com" />
       </el-form-item>
       <el-form-item label="账号">
         <el-input v-model="form.username" />
